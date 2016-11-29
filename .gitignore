@@ -1,3 +1,6 @@
+# Slash command DBs
+db_slackbutton_slash_command
+
 # Logs
 logs
 *.log

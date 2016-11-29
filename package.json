@@ -1,0 +1,27 @@
+{
+  "name": "slack-rlbot",
+  "version": "1.0.0",
+  "description": "A Slack bot for utilizing the emotes found in the popular vehicular soccer game, Rocket League.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinGAleman/slack-rlbot.git"
+  },
+  "keywords": [
+    "slack",
+    "chatbot"
+  ],
+  "author": "Kevin Aleman",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/KevinGAleman/slack-rlbot/issues"
+  },
+  "homepage": "https://github.com/KevinGAleman/slack-rlbot#readme",
+  "dependencies": {
+    "botkit": "^0.4.2"
+  }
+}
