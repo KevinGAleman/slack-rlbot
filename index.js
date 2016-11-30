@@ -2,11 +2,12 @@
 var Botkit = require('botkit');
 
 if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.PORT) {
+    /* eslint no-console: 0 */
     console.log('Error: Specify CLIENT_ID, CLIENT_SECRET and PORT in environment');
     process.exit(1);
 }
 
-const config = {};
+let config = {};
 if (process.env.MONGOLAB_URI) {
     const BotkitStorage = require('botkit-storage-mongo');
     config = {
@@ -26,7 +27,7 @@ var controller = Botkit.slackbot(config).configureSlackApp(
     }
 );
 
-controller.setupWebserver(process.env.PORT, function (err, webserver) {
+controller.setupWebserver(process.env.PORT, function (err) {
     controller.createWebhookEndpoints(controller.webserver);
 
     controller.createOauthEndpoints(controller.webserver, function (err, req, res) {
@@ -57,13 +58,13 @@ controller.on('slash_command', function (bot, message) {
 
             for (var i = 0; i < command[1]; i++) {
                 if (i == 3) {
-                  bot.replyPublicDelayed(message, 'Chat disabled for 4 seconds.');
-                  return;
+                    bot.replyPublicDelayed(message, 'Chat disabled for 4 seconds.');
+                    return;
               }
                 if (i == 0) {
-                  bot.replyPublic(message, replyMessage);
+                    bot.replyPublic(message, replyMessage);
               } else {
-                  bot.replyPublicDelayed(message, replyMessage);
+                    bot.replyPublicDelayed(message, replyMessage);
               }
             }
         } else {
