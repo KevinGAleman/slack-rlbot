@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "lint": "eslint index.js commands.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +24,8 @@
   "homepage": "https://github.com/KevinGAleman/slack-rlbot#readme",
   "dependencies": {
     "botkit": "^0.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.11.1"
   }
 }
