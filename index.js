@@ -61,7 +61,7 @@ controller.on('slash_command', function (bot, message) {
       } else if (command.type === "help"){
         bot.replyPrivate(message,
           "I send emotes, just like you do in Rocket League. " +
-          "Try typing `/rlbot whatasave 3`.");
+          "Try typing `/rl whatasave 3`.");
       } else if (command.type === "invalid") {
         bot.replyPrivate(message, "I'm sorry, I couldn't find the emote for your command");
       }
