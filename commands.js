@@ -1,4 +1,4 @@
-const exports = module.exports = {};
+var exports = module.exports = {};
 
 const emotes = {
     igotit: 'I got it!',
