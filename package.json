@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A Slack bot for utilizing the emotes found in the popular vehicular soccer game, Rocket League.",
   "main": "index.js",
+  "engines": {
+    "node": "4.6.0"
+  },
   "scripts": {
     "start": "node index.js",
     "lint": "eslint index.js commands.js",
