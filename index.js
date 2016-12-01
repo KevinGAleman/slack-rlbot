@@ -12,6 +12,7 @@ var config = {};
 if (process.env.MONGOLAB_URI) {
     var BotkitStorage = require('botkit-storage-mongo');
     config = {
+        stats_optout: true,
         storage: BotkitStorage({mongoUri: process.env.MONGOLAB_URI}),
     };
 } else {
@@ -51,7 +52,7 @@ controller.on('slash_command', function (bot, message) {
         if (command.type === 'valid') {
             for (var i = 0; i < command.times; i++) {
                 if (i == 0) {
-                    bot.replyPublic(message, command.text);
+                    bot.replyPublicDelayed(message, command.text);
                 } else if (i == 3) {
                     bot.replyPublicDelayed(message, 'Chat disabled for 4 seconds.');
                     return;
@@ -70,6 +71,6 @@ controller.on('slash_command', function (bot, message) {
         break;
     }
     default:
-        bot.replyPublic(message, 'I\'m afraid I don\'t know how to ' + message.command + ' yet.');
+        bot.replyPrivate(message, 'I\'m afraid I don\'t know how to ' + message.command + ' yet.');
     }
 });
