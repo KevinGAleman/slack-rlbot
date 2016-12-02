@@ -1,6 +1,7 @@
 /* Uses the slack button feature to offer a real time bot to multiple teams */
 const Botkit = require('botkit');
 const commands = require('./commands.js');
+const util = require('util');
 
 if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.PORT || !process.env.VERIFICATION_TOKEN) {
     /* eslint no-console: 0 */
@@ -50,15 +51,17 @@ controller.on('slash_command', function (bot, message) {
       // Get the message and repeat from the commands module.
         const command = commands.getCommand(message.text);
         if (command.type === 'valid') {
-            bot.replyAcknowledge(); 
+            bot.replyAcknowledge();
             for (var i = 0; i < command.times; i++) {
+                // Slack format for usernames is <@{userId}:{userName}>
+                const finalText = util.format('<@%s|%s>: %s', message.user, message.user_name, command.text);
                 if (i == 0) {
-                    bot.replyPublicDelayed(message, command.text);
+                    bot.replyPublicDelayed(message, finalText);
                 } else if (i == 3) {
-                    bot.replyPublicDelayed(message, 'Chat disabled for 4 seconds.');
+                    bot.replyPrivateDelayed(message, 'Chat disabled for 4 seconds.');
                     return;
                 } else {
-                    bot.replyPublicDelayed(message, command.text);
+                    bot.replyPublicDelayed(message, finalText);
                 }
             }
         } else if (command.type === 'help'){
