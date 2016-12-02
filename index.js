@@ -50,6 +50,7 @@ controller.on('slash_command', function (bot, message) {
       // Get the message and repeat from the commands module.
         const command = commands.getCommand(message.text);
         if (command.type === 'valid') {
+            bot.replyAcknowledge(); 
             for (var i = 0; i < command.times; i++) {
                 if (i == 0) {
                     bot.replyPublicDelayed(message, command.text);
