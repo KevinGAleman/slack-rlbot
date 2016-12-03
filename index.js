@@ -5,7 +5,7 @@ var http = require('http').Server(app);
 app.use(express.static(__dirname + '/public'));
 app.set('port', (process.env.PORT));
 
-require('./app/bot');
+require('./app/bot')(app);
 
 //START ===================================================
 http.listen(app.get('port'), function(){
