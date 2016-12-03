@@ -3,6 +3,7 @@ const commands = require('./commands.js');
 const util = require('util');
 
 module.exports = function(app) {
+  console.log('starting bot...');
   if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.PORT || !process.env.VERIFICATION_TOKEN) {
       /* eslint no-console: 0 */
       console.log('Error: Specify CLIENT_ID, CLIENT_SECRET, VERIFICATION_TOKEN, and PORT in environment');
@@ -30,9 +31,9 @@ module.exports = function(app) {
       }
   );
 
-  app.createWebhookEndpoints(controller.webserver);
+  controller.createWebhookEndpoints(app);
 
-  app.createOauthEndpoints(controller.webserver, function (err, req, res) {
+  controller.createOauthEndpoints(app, function (err, req, res) {
       if (err) {
           res.status(500).send('ERROR: ' + err);
       } else {
