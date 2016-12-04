@@ -7,6 +7,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', (process.env.PORT));
 
-app.listen(process.env.PORT);
-
 require('./app/bot')(app);
+
+app.listen(process.env.PORT);
