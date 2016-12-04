@@ -7,6 +7,7 @@ After cloning the repo, run:
 
 Then, if you're testing the app locally, run:
 `npm install -g localtunnel`
+
 `lt --port 8765 --subdomain rlbot`
 
 ### Usage
