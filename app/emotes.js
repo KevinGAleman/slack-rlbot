@@ -1,4 +1,5 @@
 var exports = module.exports = {};
+const util = require('util');
 
 const emotes = {
     igotit: 'I got it!',
@@ -46,7 +47,7 @@ const emotes = {
     whatagame: 'What a Game!'
 };
 
-exports.getCommand = function (command) {
+function getCommand (command) {
   // Break out the command so we can parse it, and initialize the finalCommand to invalid.
     const commands = command.split(' ');
     const finalCommand = { type: 'invalid', text: '', times: 0 };
@@ -72,3 +73,32 @@ exports.getCommand = function (command) {
 
     return finalCommand;
 };
+
+exports.handleEmoteCommand = function (bot, message) {
+  // Ignore the message if the Slack token isn't present.
+  if (message.token !== process.env.VERIFICATION_TOKEN) return;
+
+  // Get the message and repeat from the emotes module.
+  const command = getCommand(message.text);
+  if (command.type === 'valid') {
+      bot.replyAcknowledge();
+      for (var i = 0; i < command.times; i++) {
+          // Slack format for usernames is <@{userId}:{userName}>
+          const returnMsg = util.format('<@%s|%s>: %s', message.user, message.user_name, command.text);
+          if (i == 0) {
+              bot.replyPublicDelayed(message, returnMsg);
+          } else if (i == 3) {
+              bot.replyPrivateDelayed(message, 'Chat disabled for 4 seconds.');
+              return;
+          } else {
+              bot.replyPublicDelayed(message, returnMsg);
+          }
+      }
+  } else if (command.type === 'help'){
+      bot.replyPrivate(message,
+      'I send emotes, just like you do in Rocket League. ' +
+      'Try typing `/rl whatasave 3`.');
+  } else if (command.type === 'invalid') {
+      bot.replyPrivate(message, 'I\'m sorry, I couldn\'t find the emote for your command');
+  }
+}

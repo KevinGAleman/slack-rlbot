@@ -7,8 +7,8 @@
     "node": "4.6.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "lint": "eslint index.js commands.js",
+    "start": "node server.js",
+    "lint": "eslint server.js app/emotes.js app/bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
