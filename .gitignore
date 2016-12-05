@@ -1,3 +1,6 @@
+# Local secrets file
+secrets.txt
+
 # Slash command DBs
 db_slackbutton_slash_command
 
