@@ -4,7 +4,7 @@ RL Bot is a Slack bot designed to utilize the emotes found in the popular vehicu
 ## Usage
 First you'll need to authorize the app for your team by hitting https://rlbot.co/login.
 
-Next, you can start ~~spamming~~ sending emotes to your team. Command structure current has two possible use cases:
+Next, you can start ~~spamming~~ sending emotes to your team. Command structure currently has two possible use cases:
 
 `/rl whatasave` - Sends "What a save!" with an indicator of who sent it.
 
