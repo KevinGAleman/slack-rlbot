@@ -9,4 +9,8 @@ app.set('port', (process.env.PORT));
 
 require('./app/bot')(app);
 
+app.get("/", function(req, res) {
+  res.redirect("https://github.com/KevinGAleman/slack-rlbot");
+});
+
 app.listen(process.env.PORT);
